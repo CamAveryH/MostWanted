@@ -130,3 +130,53 @@ function intersect(arr1, arr2) {
   }
 }
 
+function completeSearch() {
+  let results = people;
+  let iDResults = filterByID();
+  let firstNameResults = filterByFirstName();
+  let lastNameResults = filterByLastName();
+  let eyeColorResults = filterByEyeColor();
+  let genderResults = filterByGender();
+  let occupationResults = filterByOccupation();
+
+  results = intersect(results, iDResults);
+  results = intersect(results, firstNameResults);
+  results = intersect(results, lastNameResults);
+  results = intersect(results, eyeColorResults);
+  results = intersect(results, genderResults);
+  results = intersect(results, occupationResults);
+  
+return results;
+}
+
+function findSpouse(entry) {
+  let filteredSpouse = people.filter(function (person) {
+      if(person.currentSpouse === entry.id){
+          return true;
+      }
+      return false;
+  });
+  if(filteredSpouse.length > 0){
+      return filteredSpouse
+  }else{
+      alert("This person does not have a spouse.");
+      return;
+  }
+}
+ 
+
+function findSibling(entry) {
+  let filteredSibling = people.filter(function (person) {
+      if(person.parents === entry.parents && person.id !== entry.id) {
+          return true;
+      }
+      return false;
+  });
+  if(filteredSibling.length > 0) {
+      return filteredSibling;
+  }else{
+      alert("This person does not have any siblings.");
+      return;
+  }
+}
+
