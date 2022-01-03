@@ -78,3 +78,55 @@ function filterByEyeColor() {
   }
 }
 
+function filterByGender() {
+  let genderInput = document.forms['nameForm']['gender'].value;
+  if(genderInput === "") {
+      return;
+  }
+  let filteredGender = people.filter(function (person) {
+  if(person.gender === genderInput) {
+      return true;
+  }
+  return false;
+  }); 
+  if(filteredGender.length > 0){
+      return filteredGender
+  }else{
+      alert("There is no one by that gender.")
+      return;
+  }
+}
+
+function filterByOccupation() {
+  let occupationInput = document.forms['nameForm']['occupation'].value;
+  if(occupationInput === "") {
+      return;
+  }
+  let filteredOccupation = people.filter(function (person) {
+  if(person.occupation === occupationInput) {
+      return true;
+  }
+  return false;
+  }); 
+  if(filteredOccupation.length > 0){
+      return filteredOccupation;
+  }else{
+      alert("There is no one by that occupation.")
+      return;
+  }
+}
+function intersect(arr1, arr2) {
+  if (arr2=== undefined || arr2.length === 0) {
+      return arr1;
+  }
+  else{
+  let filteredResults = arr1.filter(x=> arr2.includes(x));
+  if (filteredResults.length === 0){
+      return arr1;
+  }
+      else { 
+      return filteredResults;
+      }
+  }
+}
+
