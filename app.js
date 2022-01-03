@@ -1,7 +1,7 @@
 'use strict';
 
-function filterByID() {
-    let iDInput = parseInt(document.forms['nameForm']['idn'].value);    
+function filterByID(people) {
+    let iDInput = parseInt(document.forms['nameForm']['id'].value);    
     if(Number.isNaN(iDInput)=== true){
         return;
     }
@@ -19,7 +19,7 @@ function filterByID() {
         }
     }
 
-function filterByFirstName() {
+function filterByFirstName(people) {
     let firstNameInput = document.forms['nameForm']['fname'].value;    
     if(firstNameInput === ""){
         return;
@@ -38,7 +38,7 @@ function filterByFirstName() {
         }
     
 }
-function filterByLastName() {
+function filterByLastName(people) {
   let lastNameInput = document.forms['nameForm']['lname'].value;    
   if(lastNameInput === "") {
       return;
@@ -59,7 +59,7 @@ function filterByLastName() {
 }
 
 
-function filterByEyeColor() {
+function filterByEyeColor(people) {
   let eyeColorInput = document.forms['nameForm']['eyeColor'].value;
   if(eyeColorInput === "") {
       return;
@@ -78,7 +78,7 @@ function filterByEyeColor() {
   }
 }
 
-function filterByGender() {
+function filterByGender(people) {
   let genderInput = document.forms['nameForm']['gender'].value;
   if(genderInput === "") {
       return;
@@ -97,7 +97,7 @@ function filterByGender() {
   }
 }
 
-function filterByOccupation() {
+function filterByOccupation(people) {
   let occupationInput = document.forms['nameForm']['occupation'].value;
   if(occupationInput === "") {
       return;
@@ -130,14 +130,14 @@ function intersect(arr1, arr2) {
   }
 }
 
-function completeSearch() {
+function completeSearch(people) {
   let results = people;
-  let iDResults = filterByID();
-  let firstNameResults = filterByFirstName();
-  let lastNameResults = filterByLastName();
-  let eyeColorResults = filterByEyeColor();
-  let genderResults = filterByGender();
-  let occupationResults = filterByOccupation();
+  let iDResults = filterByID(results);
+  let firstNameResults = filterByFirstName(results);
+  let lastNameResults = filterByLastName(results);
+  let eyeColorResults = filterByEyeColor(results);
+  let genderResults = filterByGender(results);
+  let occupationResults = filterByOccupation(results);
 
   results = intersect(results, iDResults);
   results = intersect(results, firstNameResults);
@@ -221,11 +221,11 @@ function findKids(entry) {
       }
 }
 
-let btnGet = document.querySelector('button');
+let btnGet = document.querySelector('#Submit');
 let myTable = document.querySelector('#table');
 
-btnGet.addEventListener('click', () => {
-let results = completeSearch();
+btnGet.addEventListener('click', (people) => {
+let results = completeSearch(people);
   if(results.length < 2) {
       let person = results[0]
       let parents = intersect(person.parents, people.id)
