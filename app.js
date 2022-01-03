@@ -38,3 +38,43 @@ function filterByFirstName() {
         }
     
 }
+function filterByLastName() {
+  let lastNameInput = document.forms['nameForm']['lname'].value;    
+  if(lastNameInput === "") {
+      return;
+  }
+  let filteredLastNamePeople = people.filter(function (person) {
+      if(person.lastName === lastNameInput){
+          return true;
+      }
+      return false;
+  });
+  if(filteredLastNamePeople.length > 0){
+     return filteredLastNamePeople
+  }else{
+      alert("There is no one by that last name.")
+      return;
+
+  }
+}
+
+
+function filterByEyeColor() {
+  let eyeColorInput = document.forms['nameForm']['eyeColor'].value;
+  if(eyeColorInput === "") {
+      return;
+  }
+  let filteredEyeColor = people.filter(function (person) {
+  if(person.eyeColor === eyeColorInput) {
+      return true;
+  }
+  return false;
+  }); 
+  if(filteredEyeColor.length > 0){
+      return filteredEyeColor
+  }else{
+      alert("There is no one by that eye color.")
+      return;
+  }
+}
+
